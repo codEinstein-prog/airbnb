@@ -18,11 +18,13 @@
       <a href="#" class="hover:underline">Online</a>
     </nav>
     <div class="flex items-center gap-2">
-      <button class="bg-red-500 text-white px-4 py-2 rounded">Login</button>
-      <button class="bg-gray-200 px-4 py-2 rounded">Sign Up</button>
+      <button id="showLoginBtn" class="bg-red-500 text-white px-4 py-2 rounded">Login</button>
+      <button id="showLoginBtn" class="bg-gray-200 px-4 py-2 rounded">Sign Up</button>
     </div>
   </header>
 
+  <div id="loginModal" class="hidden fixed"><button onclick="document.getElementById('loginModal').classList.add('hidden')">✕</button></div>
+  
   <!-- Search Filters -->
   <section class="bg-white p-4 shadow-md">
     <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-6 gap-4">
@@ -141,6 +143,24 @@
       modal.querySelector("p").innerText = `Stay at ${listing.location} for ${listing.price}`;
       modal.classList.remove("hidden");
     }
+
+    // main.js
+
+    document.getElementById("showLoginBtn").addEventListener("click", function() {
+      const loginFormWrapper = document.getElementById("loginModal");
+    
+      // Use Fetch API to load the login.html content
+      fetch('login_signup.html')
+        .then(response => response.text())  // Read the HTML content as text
+        .then(data => {
+          loginFormWrapper.innerHTML = data;  // Inject the HTML content into the div
+          loginFormWrapper.style.display = "block";  // Show the login form
+        })
+        .catch(error => {
+          console.error("Error loading login form:", error);
+        });
+    });
+
   </script>
   <script src="https://unpkg.com/flowbite@1.6.5/dist/flowbite.min.js"></script>
 </body>
