@@ -19,11 +19,10 @@
     </nav>
     <div class="flex items-center gap-2">
       <button id="showLoginBtn" class="bg-red-500 text-white px-4 py-2 rounded">Login</button>
-      <button id="showLoginBtn" class="bg-gray-200 px-4 py-2 rounded">Sign Up</button>
+      <button id="showLoginBtnn" class="bg-gray-200 px-4 py-2 rounded">Sign Up</button>
     </div>
+    <div id="loginModal" class="hidden fixed"></div>
   </header>
-
-  <div id="loginModal" class="hidden fixed"><button onclick="document.getElementById('loginModal').classList.add('hidden')">✕</button></div>
   
   <!-- Search Filters -->
   <section class="bg-white p-4 shadow-md">
@@ -155,6 +154,23 @@
         .then(data => {
           loginFormWrapper.innerHTML = data;  // Inject the HTML content into the div
           loginFormWrapper.style.display = "block";  // Show the login form
+          loginFormWrapper.classList.remove("hidden");
+        })
+        .catch(error => {
+          console.error("Error loading login form:", error);
+        });
+    });
+
+        document.getElementById("showLoginBtnn").addEventListener("click", function() {
+      const loginFormWrapper = document.getElementById("loginModal");
+    
+      // Use Fetch API to load the login.html content
+      fetch('login_signup.html')
+        .then(response => response.text())  // Read the HTML content as text
+        .then(data => {
+          loginFormWrapper.innerHTML = data;  // Inject the HTML content into the div
+          loginFormWrapper.style.display = "block";  // Show the login form
+          loginFormWrapper.classList.remove("hidden");
         })
         .catch(error => {
           console.error("Error loading login form:", error);
