@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="login.css">
-<script src="https://github.com/codEinstein-prog/airbnb/blob/main/login.js"></script>
+<!---script src="https://github.com/codEinstein-prog/airbnb/blob/main/login.js"></script --->
 <div class="container" id="container">
 	<div class="form-container sign-up-container">
 		<form action="signup.inc.php">
@@ -49,4 +49,16 @@
 	<button onclick="document.getElementById('loginModal').classList.add('hidden')">✕</button>
 </div>
 
-
+<script>
+	const signUpButton = document.getElementById("signUp");
+	const signInButton = document.getElementById("signIn");
+	const container = document.getElementById("container");
+	
+	signUpButton.addEventListener("click", function() {
+		container.classList.add("right-panel-active");
+	});
+	
+	signInButton.addEventListener("click", function() {
+		container.classList.remove("right-panel-active");
+	});
+</script>
